@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Produto</title>
+</head>
+<body>
+    <h1>Editar Produto</h1>
+
+    <form action="/admin/edit/<%= product.id %>" method="POST" enctype="multipart/form-data">
+        <input type="text" name="name" value="<%= product.name %>" required />
+        <textarea name="description" required><%= product.description %></textarea>
+        <input type="number" name="price" value="<%= product.price %>" required />
+        <label>
+            <input type="checkbox" name="freeShipping" <%= product.freeShipping ? 'checked' : '' %> /> Free Shipping
+        </label>
+        <div>
+            <img src="<%= product.image %>" alt="Product Image" width="100" />
+            <input type="file" name="image" />
+            <input type="hidden" name="image" value="<%= product.image %>" />
+        </div>
+        <button type="submit">Update Product</button>
+    </form>
+    
+
+    <br>
+    <a href="/admin">Voltar ao Painel Administrativo</a>
+</body>
+</html>

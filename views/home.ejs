@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loja Virtual - Início</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @layer utilities {
+      .card-shadow {
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+      }
+      .product-name {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+      }
+      .product-description {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+        overflow: hidden;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans">
+  <!-- Header -->
+  <header class="bg-white shadow-lg sticky top-0 z-10">
+    <div class="container mx-auto p-6 flex justify-between items-center">
+      <h1 class="text-3xl font-bold text-gray-800 tracking-widest">Loja Virtual</h1>
+      <nav>
+        <ul class="flex space-x-8">
+          <li><a href="/" class="text-gray-700 hover:text-blue-500 font-medium">Início</a></li>
+          <li><a href="/cart" class="text-gray-700 hover:text-blue-500 font-medium">Carrinho</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Produtos -->
+  <main class="container mx-auto py-16 px-6">
+    <h2 class="text-4xl font-semibold text-gray-900 mb-8">Produtos Disponíveis</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+      <% products.forEach(product => { %>
+        <a href="/product/<%= product.id %>" class="bg-white card-shadow hover:no-underline block border border-gray-200 rounded-lg overflow-hidden">
+          <div class="relative w-full h-64 bg-gray-200">
+            <img src="<%= product.image %>" alt="<%= product.name %>" class="object-cover w-full h-full">
+            <% if (product.freeShipping) { %>
+              <span class="absolute top-4 right-4 bg-green-500 text-white text-sm px-3 py-1 rounded-lg">Frete Grátis</span>
+            <% } %>
+          </div>
+          <div class="p-6">
+            <h3 class="product-name text-xl font-semibold text-gray-800 mb-3"><%= product.name %></h3>
+            <p class="text-lg font-semibold text-blue-600">R$ <%= product.price.toFixed(2) %></p>
+
+            <p class="product-description text-sm text-gray-600 mb-4">Decrição: <%= product.description %></p>
+          </div>
+        </a>
+      <% }); %>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-100 py-6 mt-16">
+    <div class="container mx-auto text-center">
+      <p class="text-sm">&copy; 2024 Loja Virtual - Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>

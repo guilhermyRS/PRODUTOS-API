@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+</head>
+<body>
+    <h1>Finalizar Compra</h1>
+    <p>Total: R$ <%= total %></p>
+
+    <h2>Escolha uma forma de pagamento:</h2>
+    <form action="/checkout" method="POST">
+        <label for="payment">Pagamento:</label><br>
+        <input type="radio" id="pix" name="payment" value="pix">
+        <label for="pix">PIX</label><br>
+        <input type="radio" id="creditCard" name="payment" value="creditCard">
+        <label for="creditCard">Cartão de Crédito</label><br>
+        <button type="submit">Confirmar Pagamento</button>
+    </form>
+
+    <br>
+    <a href="/cart">Voltar para o Carrinho</a>
+</body>
+</html>
